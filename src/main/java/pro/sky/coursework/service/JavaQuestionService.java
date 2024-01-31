@@ -21,10 +21,7 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public boolean add(Question question) {
-        if (questions != null) {
-            return questions.add(question);
-        }
-        return false;
+        return questions.add(question);
     }
 
     @Override

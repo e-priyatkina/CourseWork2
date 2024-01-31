@@ -9,7 +9,7 @@ import java.util.*;
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
 
-    Random random;
+    Random random = new Random();
 
     private final QuestionService questionService;
 
