@@ -8,11 +8,7 @@ import java.util.*;
 @Service
 public class JavaQuestionService implements QuestionService {
 
-    private static final Set<Question> questions = new HashSet<>();
-
-    public static Set<Question> getSet() {
-        return questions;
-    }
+    private final Set<Question> questions = new HashSet<>();
 
     @Override
     public boolean add(String question, String answer) {
@@ -36,12 +32,11 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question getRandomQuestion() {
-        if (questions == null || questions.isEmpty()) {
+        if (getAll().isEmpty()) {
             return null;
         }
 
-        List<Question> randomQuestions = new ArrayList<>();
-        randomQuestions.addAll(questions);
+        List<Question> randomQuestions = new ArrayList<>(getAll());
 
         Random random = new Random();
         int index = random.nextInt(randomQuestions.size());

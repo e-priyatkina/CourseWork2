@@ -20,7 +20,7 @@ public class ExaminerServiceImpl implements ExaminerService {
 
     @Override
     public Collection<Question> getQuestions(int amount) {
-        if (amount > JavaQuestionService.getSet().size()) {
+        if (amount > questionService.getAll().size()) {
             throw new ManyQuestionsException();
         }
         Set<Question> randomQuestions = new HashSet<>();
