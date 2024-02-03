@@ -6,18 +6,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pro.sky.coursework.model.Question;
+import pro.sky.coursework.service.MathQuestionService;
 import pro.sky.coursework.service.QuestionService;
 
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/exam/java")
-public class JavaQuestionController {
+@RequestMapping("exam/math")
+public class MathQuestionController {
 
-    @Qualifier("javaQuestionService")
+    @Qualifier("mathQuestionService")
     private final QuestionService questions;
 
-    public JavaQuestionController(QuestionService questions) {
+    public MathQuestionController(QuestionService questions) {
         this.questions = questions;
     }
 
@@ -29,7 +30,7 @@ public class JavaQuestionController {
 
     @GetMapping("/remove")
     public boolean removeQuestion(@RequestParam String question,
-                                   @RequestParam String answer) {
+                                  @RequestParam String answer) {
         Question questionRemove = new Question(question, answer);
         return questions.remove(questionRemove);
     }

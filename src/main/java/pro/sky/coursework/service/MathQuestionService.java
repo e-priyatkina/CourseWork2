@@ -1,14 +1,12 @@
 package pro.sky.coursework.service;
 
-import org.springframework.stereotype.Service;
 import pro.sky.coursework.model.Question;
 
 import java.util.*;
 
-@Service
-public class JavaQuestionService implements QuestionService {
+public class MathQuestionService implements QuestionService {
 
-    private final Set<Question> questionsJava = new HashSet<>();
+    private final Set<Question> questionsMath = new HashSet<>();
 
     @Override
     public boolean add(String question, String answer) {
@@ -17,17 +15,17 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public boolean add(Question question) {
-        return questionsJava.add(question);
+        return questionsMath.add(question);
     }
 
     @Override
     public boolean remove(Question question) {
-        return questionsJava.remove(question);
+        return questionsMath.remove(question);
     }
 
     @Override
     public Collection<Question> getAll() {
-        return Collections.unmodifiableCollection(questionsJava);
+        return Collections.unmodifiableCollection(questionsMath);
     }
 
     @Override
@@ -40,6 +38,5 @@ public class JavaQuestionService implements QuestionService {
 
         Random random = new Random();
         int index = random.nextInt(randomQuestions.size());
-        return randomQuestions.get(index);
-    }
+        return randomQuestions.get(index);    }
 }
