@@ -9,6 +9,7 @@ import pro.sky.coursework.exception.ManyQuestionsException;
 import pro.sky.coursework.model.Question;
 import pro.sky.coursework.service.ExaminerServiceImpl;
 import pro.sky.coursework.service.JavaQuestionService;
+import pro.sky.coursework.service.QuestionService;
 
 import java.util.Collection;
 import java.util.Set;
@@ -20,14 +21,14 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class ExaminerServiceTest {
 
-    private final Collection<Question> questions = Set.of(
+    private final Collection<Question> questionsJava = Set.of(
             new Question("Дайте определение переменной", "Ячейка памяти компьютера..."),
             new Question("Типы методов", "Статические и нестатические"),
             new Question("Массив", "Структура данных")
     );
 
     @Mock
-    private JavaQuestionService javaQuestionService;
+    private QuestionService questionService;
 
     @InjectMocks
     private ExaminerServiceImpl examinerServiceImpl;
@@ -40,9 +41,9 @@ public class ExaminerServiceTest {
     @Test
     public void getQuestionPositiveTest() {
         Question question1 = new Question("Типы методов", "Статические и нестатические");
-        when(javaQuestionService.getAll())
+        when(questionService.getAll())
                 .thenReturn(Set.of(question1));
-        when(javaQuestionService.getRandomQuestion())
+        when(questionService.getRandomQuestion())
                 .thenReturn(question1);
         Collection<Question> question = examinerServiceImpl.getQuestions(1);
         assertThat(question.contains(question1)).isTrue();

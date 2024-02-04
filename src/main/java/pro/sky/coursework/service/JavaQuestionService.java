@@ -1,14 +1,21 @@
 package pro.sky.coursework.service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pro.sky.coursework.model.Question;
+import pro.sky.coursework.repository.QuestionRepository;
 
 import java.util.*;
 
 @Service
 public class JavaQuestionService implements QuestionService {
 
-    private final Set<Question> questionsJava = new HashSet<>();
+    private final QuestionRepository questionRepository;
+
+    public JavaQuestionService(@Qualifier("javaQuestionRepository") QuestionRepository questionRepository) {
+        this.questionRepository = questionRepository;
+    }
+
 
     @Override
     public boolean add(String question, String answer) {
@@ -17,17 +24,17 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public boolean add(Question question) {
-        return questionsJava.add(question);
+        return questionRepository.add(question);
     }
 
     @Override
     public boolean remove(Question question) {
-        return questionsJava.remove(question);
+        return questionRepository.remove(question);
     }
 
     @Override
     public Collection<Question> getAll() {
-        return Collections.unmodifiableCollection(questionsJava);
+        return questionRepository.getAll();
     }
 
     @Override

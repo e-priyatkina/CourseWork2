@@ -1,5 +1,6 @@
 package pro.sky.coursework.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +15,10 @@ import java.util.Collection;
 @RequestMapping("/exam/java")
 public class JavaQuestionController {
 
-    @Qualifier("javaQuestionService")
     private final QuestionService questions;
 
-    public JavaQuestionController(QuestionService questions) {
+    @Autowired
+    public JavaQuestionController(@Qualifier("javaQuestionService") QuestionService questions) {
         this.questions = questions;
     }
 
